@@ -1,33 +1,33 @@
-# Frontend setup
+# Frontend setup with Shadcn TailwindCss Vite
 
-## Step 01: Instal react using vite
+## Instal react using vite
 
 ```
 npm create vite@latest
 ```
 
-## Step 02: Now run
+## Now run
 
 ```
 npm i
 ```
 
-This will load all nodemodules and create frontend folder structure
+This will load all node modules and create frontend folder structure
 
-### Step 03: To check vite-react project created run
+## To check vite-react project created run
 
 ```
 npm run dev
 ```
 
-## Step 04: Installation of tailwind css
+## Installation of tailwind css
 
 ```
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
 
-## Step 05: Add new file tailwind.config.js file in your project directory. Replace the content object with:
+## Add below to tailwind.config.js.
 
 ```
 content: [
@@ -36,7 +36,7 @@ content: [
 ],
 ```
 
-## Step 06: Add the following lines to your "index.css" file
+## Add below to index.css file.
 
 ```
 @tailwind base;
@@ -45,7 +45,7 @@ content: [
 
 ```
 
-## Step 07: Update App.js file with this
+## Update App.js file with this
 
 ```
 import "./App.css";
@@ -61,7 +61,7 @@ function App() {
 export default App;
 ```
 
-## Step 08: To check vite-react project with tailwind css is created and working correct by running.
+## Check vite-react project with tailwind Css is running.
 
 ```
 npm run dev
@@ -69,7 +69,7 @@ npm run dev
 
 ## Now Add shadcn to project
 
-## Step 09: Create jsconfig.json
+## Create new file jsconfig.json
 
 ```
 {
@@ -83,13 +83,13 @@ npm run dev
 }
 ```
 
-## Step 10: Run this
+## Run this
 
 ```
 npm i -D @types/node
 ```
 
-## Step 11: Add this to vite.config.js
+## Add this to vite.config.js
 
 ```
 import { defineConfig } from "vite";
@@ -107,25 +107,27 @@ export default defineConfig({
 
 ```
 
-## Step 12: Run this command
+## Run this command
 
 ```
 npx shadcn@latest init
 ```
 
-If error occured re-run above command again or clear the cookie using
+If error occured re-run above command again or clear the cookie using.
 
 ```
 npm cache clean --force
 ```
 
-## Step 13: Add Button Component from shadcn
+Select options correctly shown during installation.
+
+## Add Button Component from shadcn
 
 ```
 npx shadcn@latest add button
 ```
 
-## 14: Add this to App.jsx
+## Add this to App.jsx
 
 ```
 import "./App.css";
@@ -144,7 +146,7 @@ export default App;
 
 ```
 
-## Step 15: Run app again
+## Run app again
 
 ```
 npm run dev
