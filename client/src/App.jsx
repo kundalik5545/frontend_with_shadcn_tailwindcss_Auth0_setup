@@ -1,11 +1,19 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import { Button } from "@/components/ui/button";
+//Navbar page
+// import NavbarMain from "./components/Navbar/NavbarMain";
+// Basic Pages
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <>
-      <h1 className="text-3xl underline">Heloo</h1>
-      <Button>Click me</Button>
+      <Router>
+        {/* <NavbarMain /> */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </Router>
     </>
   );
 }

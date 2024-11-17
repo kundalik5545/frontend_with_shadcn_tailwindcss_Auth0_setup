@@ -151,22 +151,22 @@ export default App;
 ```
 npm run dev
 ```
+
 ## Now setup App.jsx for routing
 
 ```
 npm i react-router-dom
 ```
 
-## Add this to App.jsx
+## Add this to App.jsx to handle routing
 
 ```
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState, useEffect, createContext } from "react";
 import "./App.css";
 
 import { Button } from "@/components/ui/button"
 //Navbar page
-import NavbarMain from "./components/Navbar/NavbarMain";
+//import NavbarMain from "./components/Navbar/NavbarMain";
 // Basic Pages
 import HomePage from "./pages/HomePage";
 
@@ -174,7 +174,7 @@ function App() {
 return (
 <>
   <Router>
-    <NavbarMain />
+    //<NavbarMain />
     <Routes>
         <Route path="/" element={<HomePage />} />
     </Routes>
@@ -193,4 +193,103 @@ export default App;
 npm i dotenv react-hot-toast axios
 ```
 
-## More ....
+# Now handle authorisation using Auth0
+
+## Create .env file under main project
+
+```
+VITE_WEBSITE_domain="dev-jk_*_.us.auth0.com"
+VITE_WEBSITE_clientId="lO_*_dR_*_GNcRc_*_hf"
+```
+
+## Now run this
+
+```
+npm install @auth0/auth0-react
+```
+
+## Now inside main.jsx add this
+
+```
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { Auth0Provider } from "@auth0/auth0-react";
+import "./index.css";
+import App from "./App.jsx";
+
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <Auth0Provider
+      domain={import.meta.env.VITE_WEBSITE_domain}
+      clientId={import.meta.env.VITE_WEBSITE_clientId}
+      authorizationParams={{
+        redirect_uri: window.location.origin,
+      }}
+    >
+      <App />
+    </Auth0Provider>
+  </StrictMode>
+);
+```
+
+## Now inside app.jsx add this
+
+```
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+//Navbar page
+// import NavbarMain from "./components/Navbar/NavbarMain";
+// Basic Pages
+import HomePage from "./pages/HomePage";
+
+function App() {
+  return (
+    <>
+      <Router>
+        {/* <NavbarMain /> */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </Router>
+    </>
+  );
+}
+
+export default App;
+```
+
+## Now create pages folder with HomePage.jsx & use rfce
+
+```
+import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button } from "@/components/ui/button";
+
+function HomePage() {
+  const { user, loginWithRedirect, isAuthenticated, logout } = useAuth0();
+  console.log("Current user", user);
+  return (
+    <div className="p-4 m-4">
+      <h1 className="text-blue-700 font-bold text-2xl p-2">HomePage</h1>
+      <div className="">
+        {isAuthenticated && (
+          <>
+            <span>{user.name}</span>
+          </>
+        )}
+        {isAuthenticated ? (
+          <Button onClick={(e) => logout()}>Logout</Button>
+        ) : (
+          <Button onClick={(e) => loginWithRedirect()}>
+            Login with redirect
+          </Button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default HomePage;
+```
+
+##
