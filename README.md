@@ -518,8 +518,32 @@ export default defineConfig({
 });
 ```
 
+## Add axios Instance to handle base Routes
+
+```
+import axios from "axios";
+
+const baseUrl = import.meta.env.VITE_BASE_URL;
+
+// Create an axios instance with the base URL configured
+const axiosInstance = axios.create({
+  baseURL: baseUrl,
+});
+
+export default axiosInstance;
+
+```
+
+## Use that axios instance as below
+
+### Import like this
+
+```
+import axiosInstance from "@/api/axios.js";
+```
+
+```
+const res = await axiosInstance.post("/login/login-user", formData);
+```
+
 ## More....
-
-```
-
-```
