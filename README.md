@@ -314,25 +314,28 @@ import "./App.css";
 // import NavbarMain from "./components/Navbar/NavbarMain";
 // Basic Pages
 import HomePage from "./pages/HomePage";
+//Extra plugin
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
-    <main>
-      <Router>
-        {/* <NavbarMain /> */}
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-        </Routes>
-      </Router>
-    </main>
-        <Toaster position="top-right" />
-      <Footer />
-
+      <main>
+        <Router>
+          {/* <NavbarMain /> */}
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+          </Routes>
+        </Router>
+      </main>
+      <Toaster position="top-right" />
+      {/* <Footer /> */}
+    </>
   );
 }
 
 export default App;
+
 ```
 
 ## Creadted hooks folder and written my own toast lib
@@ -495,4 +498,28 @@ function useToast() {
 export { useToast, toast }
 ```
 
+## Edit vite.config.js for port setup
+
+```
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 5173, // change here
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+});
+```
+
 ## More....
+
+```
+
+```
